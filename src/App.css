@@ -13,3 +13,24 @@
 .align-center {
     align-items: center;
 }
+
+h1 {
+    font-size: 30px !important;
+    color: white;
+}
+
+.main-header {
+    height: 3em;
+    justify-content: space-around;
+    background-color: var(--quaternary);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+  }
