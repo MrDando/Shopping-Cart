@@ -1,0 +1,21 @@
+.product-list {
+    flex-wrap: wrap;
+}
+
+.product {
+    height: 300px;
+    width: 200px;
+    margin: 1em;
+    border: 1px solid black;
+}
+
+.product-image-container {
+    height: 200px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.product img {
+    max-height: 100%;
+    max-width: 100%;
+}
