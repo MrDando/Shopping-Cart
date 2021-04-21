@@ -1,40 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import './Shop.css'
 
-function Categories(props) {
-    const { categories, selectCategory } = props
+import Categories from './Categories'
+import ProductList from './ProductList'
 
-    return (
-        categories.map(category => {
-            const uppercased = category.charAt(0).toUpperCase() + category.slice(1);
-            return (
-                <div className='category'>
-                    <button name={category} onClick={selectCategory}>{uppercased}</button>
-                </div>
-            )
-        })
-    )
-}
-
-function ProductList(props) {
-    const {products} = props
-
-    return (
-        <div className='product-list flex'>
-            {products.map(product => {
-                return (
-                    <div key={product.id} className='product'>
-                        <div className='product-image-container flex justify-center align-center'>
-                            <img src={product.image} alt=''></img>
-                        </div>
-                        <p className='product-title'>{product.title}</p>
-                        <p className='product-price'>{product.price}</p>
-                    </div>
-                )
-            })}
-        </div>
-    )
-}
 
 function Shop() {
     const [products, setProducts] = useState([])
@@ -56,6 +25,8 @@ function Shop() {
 
     function selectCategory(e) {
         console.log(e.target.name)
+
+
     }
 
     function getCategories() {
