@@ -1,6 +1,6 @@
 function ProductList(props) {
     const {products} = props
-
+    console.log(products)
     return (
         <div className='product-list flex'>
             {products.map(product => {

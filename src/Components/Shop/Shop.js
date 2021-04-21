@@ -6,8 +6,10 @@ import ProductList from './ProductList'
 
 
 function Shop() {
-    const [products, setProducts] = useState([])
+    const [allProducts, setAllProducts] = useState([])
+    const [filteredProducts, setFilteredProducts] = useState([])
     const [categories, setCategories] = useState([])
+    const [selectedCategory, setSelectedCategory] = useState('')
 
     useEffect(() => {
         fetchItems()
@@ -15,24 +17,27 @@ function Shop() {
     
     useEffect(() => {
         getCategories()
-    },[products])
+        filterProductsByCategory()
+    },[allProducts])
+
+    useEffect(() => {
+        filterProductsByCategory()
+    }, [selectedCategory])
 
     async function fetchItems() {
         const response = await fetch ('https://fakestoreapi.com/products')
         const data = await response.json()
-        setProducts(data)
+        setAllProducts(data)
     }
 
     function selectCategory(e) {
-        console.log(e.target.name)
-
-
+        setSelectedCategory(e.target.name)
     }
 
     function getCategories() {
         let newCategories = []
 
-        products.forEach(product => {
+        allProducts.forEach(product => {
             const productCategory = product.category
 
             if (!newCategories.includes(productCategory)) {
@@ -41,6 +46,23 @@ function Shop() {
         })
 
         setCategories(newCategories)
+    }
+
+    function filterProductsByCategory() {
+        const newFilteredProducts = []
+
+        if (selectedCategory === '') {
+            setFilteredProducts(allProducts)
+        } else {
+            allProducts.forEach(product => {
+                if (product.category === selectedCategory) {
+                    newFilteredProducts.push(product)
+                }
+            })
+
+            setFilteredProducts(newFilteredProducts)
+        }
+
     }
 
     return (
@@ -55,9 +77,9 @@ function Shop() {
             </div>
             <div>
                 <header className='products-header'>
-                    <h2>Showing all Products</h2>
+                    <h2>{selectedCategory !== '' ? selectedCategory.toLocaleUpperCase() : 'Showing all Products'} {`(${filteredProducts.length})`}</h2>
                 </header>
-                <ProductList products={products} />
+                <ProductList products={filteredProducts} />
             </div>
         </div>
         
