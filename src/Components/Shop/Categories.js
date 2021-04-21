@@ -1,3 +1,5 @@
+import uniqid from 'uniqid'
+
 function Categories(props) {
     const { categories, selectCategory } = props
 
@@ -5,7 +7,7 @@ function Categories(props) {
         categories.map(category => {
             const uppercased = category.charAt(0).toUpperCase() + category.slice(1);
             return (
-                <div className='category'>
+                <div key={uniqid()} className='category'>
                     <button name={category} onClick={selectCategory}>{uppercased}</button>
                 </div>
             )
