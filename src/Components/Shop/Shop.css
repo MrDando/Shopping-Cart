@@ -12,7 +12,7 @@
 
 .category {
     width: max-content;
-    padding: 0.2em 0;
+    padding: 0.2em 0 0 1em;
 }
 
 .category button {
@@ -22,10 +22,6 @@
 
 .category button:hover {
     color: orange;
-}
-
-.category-list {
-    margin-left: 1em;
 }
 
 .product-list {

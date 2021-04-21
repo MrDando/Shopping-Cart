@@ -72,6 +72,9 @@ function Shop() {
                     <h2>CATEGORIES</h2>
                 </header>
                 <div className='category-list'>
+                    <div className='category' style={{paddingLeft: 0}}>
+                        <button name={''} onClick={selectCategory}>All Products</button>
+                    </div>
                     <Categories categories={categories} selectCategory={selectCategory}/>
                 </div>
             </div>
