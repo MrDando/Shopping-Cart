@@ -1,17 +1,12 @@
 import { Link } from 'react-router-dom'
 
 function ProductList(props) {
-    const {products} = props
-    console.log(products)
+    const {products, getSelectedProduct } = props
     return (
         <div className='product-list flex'>
             {products.map(product => {
-                const params = {
-                    pathname: `/shop/product/${product.title}`,
-                    state: { productId: product.id },
-                }
                 return (
-                    <Link key={product.id}  to={params} testprop='testing'>
+                    <Link key={product.id} onClick={() => getSelectedProduct(product)} to={`shop/product/${product.id}`}>
                         <div className='product-thumbnail'>
                             <div className='image-container flex justify-center align-center'>
                                 <img src={product.image} alt=''></img>

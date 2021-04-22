@@ -5,7 +5,7 @@ import Categories from './Categories'
 import ProductList from './ProductList'
 
 
-function Shop() {
+function Shop(props) {
     const [allProducts, setAllProducts] = useState([])
     const [filteredProducts, setFilteredProducts] = useState([])
     const [categories, setCategories] = useState([])
@@ -82,7 +82,7 @@ function Shop() {
                 <header className='products-header'>
                     <h2>{selectedCategory !== '' ? selectedCategory.toLocaleUpperCase() : 'Showing all Products'} {`(${filteredProducts.length})`}</h2>
                 </header>
-                <ProductList products={filteredProducts} />
+                <ProductList products={filteredProducts} getSelectedProduct={props.getSelectedProduct}/>
             </div>
         </div>
         

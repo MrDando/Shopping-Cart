@@ -16,8 +16,6 @@ function ProductDetails(props) {
             newQuantity = Number(e.target.value)
         }
         
-        console.log('new value', newQuantity)
-        
         if (!Number.isInteger(newQuantity)) {
             setQuantityError(true)
         } else {
@@ -30,9 +28,15 @@ function ProductDetails(props) {
 
     }
 
+    function sendToCart() {
+        const productOrder = {  product: product,
+                                quantity: quantity}
+
+        console.log(productOrder)
+    }
+
     async function fetchItem() {
-        const productId = props.location.state.productId
-        const response = await fetch (`https://fakestoreapi.com/products/${productId}`)
+        const response = await fetch (`https://fakestoreapi.com/products/${props.product.id}`)
         const data = await response.json()
         setProduct(data)
     }
@@ -52,7 +56,7 @@ function ProductDetails(props) {
                         <p>Quantity:</p>
                         <div className='flex'> 
                             <input type='number' value={quantity} onChange={updateQuantity}></input>
-                            <button>ADD TO CART</button>
+                            <button onClick={sendToCart}>ADD TO CART</button>
                         </div>
                     {quantityError ? <p className='quantity-error'>You can only enter whole numbers here. Please correct your input.</p> : null}
                     </div>
